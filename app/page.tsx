@@ -60,10 +60,12 @@ export default function Home() {
 
     if ('serviceWorker' in navigator && 'Notification' in window) {
       navigator.serviceWorker.ready.then((registration) => {
+        // Use the basePath from next.config.ts
+        const basePath = '/nextjspwaexample';
         const options = {
           body: body,
-          icon: '/icon-192x192.png',
-          badge: '/icon-192x192.png',
+          icon: `${basePath}/icon-192x192.png`,
+          badge: `${basePath}/icon-192x192.png`,
           tag: tag,
           vibrate: [200, 100, 200],
           data: {

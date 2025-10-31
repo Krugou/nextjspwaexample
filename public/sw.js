@@ -1,11 +1,12 @@
 // Service Worker for Next.js PWA Example
 const CACHE_NAME = 'nextjs-pwa-v1';
+const BASE_PATH = '/nextjspwaexample';
 const urlsToCache = [
-  '/',
-  '/manifest.json',
-  '/icon-192x192.png',
-  '/icon-384x384.png',
-  '/icon-512x512.png',
+  `${BASE_PATH}/`,
+  `${BASE_PATH}/manifest.json`,
+  `${BASE_PATH}/icon-192x192.png`,
+  `${BASE_PATH}/icon-384x384.png`,
+  `${BASE_PATH}/icon-512x512.png`,
 ];
 
 // Install event - cache essential files
@@ -51,7 +52,7 @@ self.addEventListener('fetch', (event) => {
     }).catch(() => {
       // Return a custom offline page if available
       if (event.request.destination === 'document') {
-        return caches.match('/');
+        return caches.match(`${BASE_PATH}/`);
       }
     })
   );
@@ -63,7 +64,7 @@ self.addEventListener('notificationclick', (event) => {
 
   if (event.action === 'explore') {
     event.waitUntil(
-      clients.openWindow('/')
+      clients.openWindow(`${BASE_PATH}/`)
     );
   } else if (event.action === 'close') {
     // Just close the notification
@@ -71,7 +72,7 @@ self.addEventListener('notificationclick', (event) => {
   } else {
     // Default action - open the app
     event.waitUntil(
-      clients.openWindow('/')
+      clients.openWindow(`${BASE_PATH}/`)
     );
   }
 });
@@ -80,8 +81,8 @@ self.addEventListener('notificationclick', (event) => {
 self.addEventListener('push', (event) => {
   const options = {
     body: event.data ? event.data.text() : 'New notification from PWA',
-    icon: '/icon-192x192.png',
-    badge: '/icon-192x192.png',
+    icon: `${BASE_PATH}/icon-192x192.png`,
+    badge: `${BASE_PATH}/icon-192x192.png`,
     vibrate: [200, 100, 200],
     data: {
       dateOfArrival: Date.now(),
