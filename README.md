@@ -25,7 +25,6 @@ The app includes a complete `manifest.json` with:
 - **Display Mode**: Standalone for native app-like experience
 - **Theme Colors**: Black theme with white background
 - **Categories**: Education, Productivity
-- **Screenshots**: Support for wide and narrow form factors
 
 ### Push Notifications
 
@@ -154,14 +153,21 @@ Edit `public/manifest.json` to customize:
 
 ### Service Worker Configuration
 
-Modify `next.config.ts` to adjust PWA settings:
-```typescript
-withPWA({
-  dest: "public",           // Output directory for SW files
-  register: true,           // Auto-register service worker
-  skipWaiting: true,        // Activate SW immediately
-  disable: false,           // Set to true to disable PWA
-})
+The service worker is implemented in `public/sw.js` and provides:
+- Offline caching for essential resources
+- Background notification handling
+- Custom cache management
+
+To modify caching behavior, edit `public/sw.js`:
+```javascript
+const CACHE_NAME = 'nextjs-pwa-v1';
+const urlsToCache = [
+  '/',
+  '/manifest.json',
+  '/icon-192x192.png',
+  '/icon-384x384.png',
+  '/icon-512x512.png',
+];
 ```
 
 ## 📚 Technologies Used
@@ -170,8 +176,7 @@ withPWA({
 - **React 19**: Latest React version
 - **TypeScript 5**: Type-safe development
 - **Tailwind CSS 4**: Utility-first styling
-- **@ducanh2912/next-pwa**: PWA plugin for Next.js
-- **Canvas**: Icon generation
+- **Service Worker API**: For offline functionality and notifications
 
 ## 🌐 Browser Support
 
