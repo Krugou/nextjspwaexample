@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { config } from './config';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -60,12 +61,10 @@ export default function Home() {
 
     if ('serviceWorker' in navigator && 'Notification' in window) {
       navigator.serviceWorker.ready.then((registration) => {
-        // Use the basePath from next.config.ts
-        const basePath = '/nextjspwaexample';
         const options = {
           body: body,
-          icon: `${basePath}/icon-192x192.png`,
-          badge: `${basePath}/icon-192x192.png`,
+          icon: `${config.basePath}/icon-192x192.png`,
+          badge: `${config.basePath}/icon-192x192.png`,
           tag: tag,
           vibrate: [200, 100, 200],
           data: {

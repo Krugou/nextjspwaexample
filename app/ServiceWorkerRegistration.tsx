@@ -1,14 +1,13 @@
 'use client';
 
 import { useEffect } from 'react';
+import { config } from './config';
 
 export default function ServiceWorkerRegistration() {
   useEffect(() => {
     if ('serviceWorker' in navigator) {
-      // Use the basePath from next.config.ts
-      const basePath = '/nextjspwaexample';
       navigator.serviceWorker
-        .register(`${basePath}/sw.js`)
+        .register(`${config.basePath}/sw.js`)
         .then((registration) => {
           console.log('Service Worker registered:', registration);
         })
