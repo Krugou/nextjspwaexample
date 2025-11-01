@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { config } from './config';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -62,8 +63,8 @@ export default function Home() {
       navigator.serviceWorker.ready.then((registration) => {
         const options = {
           body: body,
-          icon: '/icon-192x192.png',
-          badge: '/icon-192x192.png',
+          icon: `${config.basePath}/icon-192x192.png`,
+          badge: `${config.basePath}/icon-192x192.png`,
           tag: tag,
           vibrate: [200, 100, 200],
           data: {

@@ -5,7 +5,7 @@ import ServiceWorkerRegistration from "./ServiceWorkerRegistration";
 export const metadata: Metadata = {
   title: "Next.js PWA with Notifications",
   description: "A Progressive Web App example with mobile notifications built with Next.js",
-  manifest: "/manifest.json",
+  manifest: "/nextjspwaexample/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
